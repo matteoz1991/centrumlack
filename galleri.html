@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="sv" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galleri | Centrum Lack</title>
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body style="background: #f8fafc;">
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="container nav-content">
+            <a href="index.html#home" class="logo flex items-center">
+                <img src="assets/logga1.png" alt="Centrum Lack" style="height: 90px;" class="logo-glow transition-transform hover:scale-105">
+            </a>
+            
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html#home">Hem</a></li>
+                    <li><a href="index.html#services">Tjänster</a></li>
+                    <li><a href="index.html#gallery" class="highlight-red">Galleri</a></li>
+                    <li><a href="index.html#about">Om oss</a></li>
+                    <li><a href="index.html#contact" class="btn btn-primary" style="padding: 0.6rem 1.5rem;">Kontakta Oss</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="section-padding" style="padding-top: 8rem;">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 5rem;">
+                <p style="color: var(--brand-red); font-weight: 800; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 1rem;">Projektarkiv</p>
+                <h1 style="font-size: 3.5rem; color: var(--bg-dark);">Vårt Galleri</h1>
+                <p style="max-width: 600px; margin: 1.5rem auto; color: #64748b; font-weight: 500; font-size: 1.25rem;">
+                    Här samlar vi bilder från våra senaste uppdrag. Se resultaten av professionell billackering och plåtreparationer.
+                </p>
+            </div>
+            
+            <!-- Gallery Grid Template -->
+            <div id="gallery-grid" class="grid-3" style="gap: 2rem;">
+                <!-- Dynamically Populated -->
+            </div>
+            
+            <div style="text-align: center; margin-top: 5rem;">
+                <a href="index.html#home" class="btn btn-outline" style="color: var(--bg-dark); border-color: #cbd5e1;">
+                    <i data-lucide="arrow-left"></i> Tillbaka till startsidan
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox">
+        <button class="lightbox-close" id="close-lightbox">
+            <i data-lucide="x"></i>
+        </button>
+        <button id="prev-btn" style="position: absolute; left: 2rem; color: white; background: none; border: none; cursor: pointer; font-size: 3rem;">
+            <i data-lucide="chevron-left" class="w-12 h-12"></i>
+        </button>
+        <div style="max-width: 90%; max-height: 85vh; display: flex; align-items: center; justify-content: center;">
+            <img id="lightbox-img" src="" alt="Enlarged" style="max-width: 100%; max-height: 100%; border-radius: 12px; box-shadow: 0 0 50px rgba(0,0,0,0.5);">
+        </div>
+        <button id="next-btn" style="position: absolute; right: 2rem; color: white; background: none; border: none; cursor: pointer; font-size: 3rem;">
+            <i data-lucide="chevron-right" class="w-12 h-12"></i>
+        </button>
+    </div>
+
+    <footer style="background: #020617; padding: 5rem 0; border-top: 1px solid var(--border); color: white;">
+        <div class="container" style="text-align: center;">
+            <p style="color: #64748b;">&copy; 2026 Centrum Lack. Alla rättigheter förbehållna.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Gallery Auto-Population & Lightbox Logic
+        document.addEventListener('DOMContentLoaded', async () => {
+            const grid = document.getElementById('gallery-grid');
+            let images = [];
+
+            try {
+                const response = await fetch('assets/galleri-manifest.json');
+                images = await response.json();
+            } catch (err) {
+                console.warn('Galleri missing or manifest failed.');
+            }
+
+            // Populate Grid
+            images.forEach((imgSrc, index) => {
+                const card = document.createElement('div');
+                card.className = 'glass-card';
+                card.style.padding = '0.75rem';
+                card.style.background = 'white';
+                card.style.cursor = 'pointer';
+                card.innerHTML = `
+                    <div style="aspect-ratio: 1; overflow: hidden; border-radius: 12px;">
+                        <img src="assets/galleri/${imgSrc}" alt="Centrum Lack Projekt" style="width: 100%; height: 100%; object-fit: cover;" class="gallery-item-img transition-all duration-500 hover:scale-110">
+                    </div>
+                `;
+                card.addEventListener('click', () => openLightbox(index));
+                grid.appendChild(card);
+            });
+
+            // Lightbox Logic
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            let currentIndex = 0;
+
+            function openLightbox(index) {
+                currentIndex = index;
+                lightboxImg.src = `assets/galleri/${images[currentIndex]}`;
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeLightbox() {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            document.getElementById('close-lightbox').addEventListener('click', closeLightbox);
+            
+            document.getElementById('prev-btn').addEventListener('click', (e) => {
+                e.stopPropagation();
+                currentIndex = (currentIndex - 1 + images.length) % images.length;
+                lightboxImg.src = `assets/galleri/${images[currentIndex]}`;
+            });
+
+            document.getElementById('next-btn').addEventListener('click', (e) => {
+                e.stopPropagation();
+                currentIndex = (currentIndex + 1) % images.length;
+                lightboxImg.src = `assets/galleri/${images[currentIndex]}`;
+            });
+
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) closeLightbox();
+            });
+
+            // Keyboard support
+            document.addEventListener('keydown', (e) => {
+                if (!lightbox.classList.contains('active')) return;
+                if (e.key === 'Escape') closeLightbox();
+                if (e.key === 'ArrowRight') document.getElementById('next-btn').click();
+                if (e.key === 'ArrowLeft') document.getElementById('prev-btn').click();
+            });
+
+            if (window.lucide) window.lucide.createIcons();
+        });
+    </script>
+</body>
+</html>
