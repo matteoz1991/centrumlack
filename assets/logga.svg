@@ -1,0 +1,13 @@
+<svg width="600" height="100" viewBox="0 0 600 100" xmlns="http://www.w3.org/2000/svg">
+    <!-- Outer Blue Border -->
+    <rect x="2" y="2" width="596" height="96" rx="12" ry="12" fill="none" stroke="#1A56DB" stroke-width="4"/>
+    <!-- Inner Red Border -->
+    <rect x="8" y="8" width="584" height="84" rx="8" ry="8" fill="none" stroke="#E11D48" stroke-width="2"/>
+    <!-- Logo Text with Shadow/Effect -->
+    <text x="50%" y="65%" dominant-baseline="middle" text-anchor="middle" font-family="Arial Black, Impact, sans-serif" font-size="64" font-weight="900" letter-spacing="-3">
+        <!-- Blue Shadow -->
+        <tspan fill="#1A56DB" dx="2" dy="2">CENTRUMLACK</tspan>
+        <!-- Red Text -->
+        <tspan x="50%" y="65%" fill="#E11D48">CENTRUMLACK</tspan>
+    </text>
+</svg>
