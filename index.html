@@ -5,10 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Centrum Lack | Professionell Billackering & Bilvård</title>
     <meta name="description" content="Professionell billackering, plåtreparationer och bilvård i Frillesås. Över 15 års erfarenhet av perfekt finish.">
+    <!-- Preconnect & Preload -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://images.unsplash.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" as="style">
+    <link rel="preload" href="https://images.unsplash.com/photo-1605810730811-4da9d6006104?q=80&w=1400&auto=format&fit=crop" as="image">
     
     <!-- Fonts & Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <script src="https://unpkg.com/lucide@latest" defer></script>
     
     <!-- Styles -->
     <link rel="stylesheet" href="style.css">
@@ -19,7 +25,7 @@
     <header id="navbar" class="navbar">
         <div class="container nav-content">
             <a href="#home" class="logo flex items-center">
-                <img src="assets/logga1.png" alt="Centrum Lack" style="height: 160px;" class="logo-glow transition-transform hover:scale-105">
+                <img src="assets/logga1.png" alt="Centrum Lack" width="1920" height="1080" class="nav-logo logo-glow transition-transform hover:scale-105">
             </a>
             
             <nav>
@@ -54,13 +60,13 @@
         <!-- Hero Section -->
         <section id="home" class="hero">
             <div class="hero-bg">
-                <img src="https://images.unsplash.com/photo-1605810730811-4da9d6006104?q=80&w=2000" alt="">
+                <img src="https://images.unsplash.com/photo-1605810730811-4da9d6006104?q=80&w=1400&auto=format&fit=crop" alt="Bilverkstad bakgrund" width="1400" height="800">
                 <div class="hero-overlay"></div>
             </div>
             
             <div class="container">
                 <div class="hero-content">
-                    <img src="assets/logga1.png" alt="Centrum Lack" style="max-width: 450px; width: 100%;" class="logo-glow mb-12">
+                    <img src="assets/logga1.png" alt="Centrum Lack" width="1920" height="1080" class="hero-logo logo-glow mb-12">
                     <h1 style="color: white; font-size: clamp(2.5rem, 8vw, 4.5rem); margin-bottom: 2rem;">
                         Proffsig lackering för en <span class="highlight-red italic">perfekt</span> finish.
                     </h1>
@@ -85,8 +91,8 @@
                 
                 <div class="grid-3">
                     <div class="glass-card" style="padding: 1rem; background: white;">
-                        <div style="aspect-ratio: 4/3; overflow: hidden; border-radius: 12px; margin-bottom: 1.5rem;">
-                            <img src="assets/lackeringv2.png" alt="Billackering" style="width: 100%; height: 100%; object-fit: cover;">
+                        <div style="aspect-ratio: 4/3; overflow: hidden; border-radius: 12px; margin-bottom: 1.5rem; background: #e2e8f0;">
+                            <img src="assets/lackeringv2.png" alt="Billackering" width="2816" height="1536" loading="lazy" style="width: 100%; height: 100%; object-fit: cover;">
                         </div>
                         <div style="padding: 1.5rem;">
                             <h3 style="font-size: 1.75rem; color: var(--bg-dark); margin-bottom: 1rem;">Billackering</h3>
@@ -95,8 +101,8 @@
                     </div>
                     
                     <div class="glass-card" style="padding: 1rem; background: white;">
-                        <div style="aspect-ratio: 4/3; overflow: hidden; border-radius: 12px; margin-bottom: 1.5rem;">
-                            <img src="assets/plåtv2.png" alt="Plåtskador" style="width: 100%; height: 100%; object-fit: cover;">
+                        <div style="aspect-ratio: 4/3; overflow: hidden; border-radius: 12px; margin-bottom: 1.5rem; background: #e2e8f0;">
+                            <img src="assets/plåtv2.png" alt="Plåtskador" width="2816" height="1536" loading="lazy" style="width: 100%; height: 100%; object-fit: cover;">
                         </div>
                         <div style="padding: 1.5rem;">
                             <h3 style="font-size: 1.75rem; color: var(--bg-dark); margin-bottom: 1rem;">Plåtskador</h3>
@@ -105,8 +111,8 @@
                     </div>
                     
                     <div class="glass-card" style="padding: 1rem; background: white;">
-                        <div style="aspect-ratio: 4/3; overflow: hidden; border-radius: 12px; margin-bottom: 1.5rem;">
-                            <img src="assets/reperationv2.png" alt="Bilreparation" style="width: 100%; height: 100%; object-fit: cover;">
+                        <div style="aspect-ratio: 4/3; overflow: hidden; border-radius: 12px; margin-bottom: 1.5rem; background: #e2e8f0;">
+                            <img src="assets/reperationv2.png" alt="Bilreparation" width="2816" height="1536" loading="lazy" style="width: 100%; height: 100%; object-fit: cover;">
                         </div>
                         <div style="padding: 1.5rem;">
                             <h3 style="font-size: 1.75rem; color: var(--bg-dark); margin-bottom: 1rem;">Bilreparation</h3>
@@ -132,14 +138,20 @@
                 
                 <!-- Swapper Grid -->
                 <div id="random-gallery-grid" class="grid-3" style="margin-bottom: 4rem;">
-                    <div id="slot-1" class="glass-card" style="aspect-ratio: 1; overflow: hidden; background: #f1f5f9; border-color: #e2e8f0;">
-                        <img src="assets/galleri/c8769120-d0c4-4933-b0f7-afeecddcb59e.jpg" class="slot-img" style="width: 100%; height: 100%; object-fit: cover; transition: opacity 0.7s ease, transform 0.7s ease;">
+                    <div id="slot-1" class="gallery-card">
+                        <div class="img-container" style="background: #e2e8f0;">
+                            <img src="assets/galleri/c8769120-d0c4-4933-b0f7-afeecddcb59e.jpg" alt="Projekt bild 1" width="800" height="800" loading="lazy" class="slot-img">
+                        </div>
                     </div>
-                    <div id="slot-2" class="glass-card" style="aspect-ratio: 1; overflow: hidden; background: #f1f5f9; border-color: #e2e8f0;">
-                        <img src="assets/galleri/0af2cc81-adca-4ce8-bc8c-e21aa36789b7.jpg" class="slot-img" style="width: 100%; height: 100%; object-fit: cover; transition: opacity 0.7s ease, transform 0.7s ease;">
+                    <div id="slot-2" class="gallery-card">
+                        <div class="img-container" style="background: #e2e8f0;">
+                            <img src="assets/galleri/0af2cc81-adca-4ce8-bc8c-e21aa36789b7.jpg" alt="Projekt bild 2" width="800" height="800" loading="lazy" class="slot-img">
+                        </div>
                     </div>
-                    <div id="slot-3" class="glass-card" style="aspect-ratio: 1; overflow: hidden; background: #f1f5f9; border-color: #e2e8f0;">
-                        <img src="assets/galleri/5242d715-48d9-4364-991b-cbcf9c6988dc.jpg" class="slot-img" style="width: 100%; height: 100%; object-fit: cover; transition: opacity 0.7s ease, transform 0.7s ease;">
+                    <div id="slot-3" class="gallery-card">
+                        <div class="img-container" style="background: #e2e8f0;">
+                            <img src="assets/galleri/5242d715-48d9-4364-991b-cbcf9c6988dc.jpg" alt="Projekt bild 3" width="800" height="800" loading="lazy" class="slot-img">
+                        </div>
                     </div>
                 </div>
                 
@@ -155,11 +167,11 @@
         <section id="about" class="section-padding" style="background: #020617; color: white;">
             <div class="container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 5rem; align-items: center;">
                 <div style="position: relative;">
-                    <div style="aspect-ratio: 4/5; border-radius: 30px; overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.5);">
-                        <img src="assets/galleri/0af2cc81-adca-4ce8-bc8c-e21aa36789b7.jpg" alt="Vår verkstad" style="width: 100%; height: 100%; object-fit: cover;">
+                    <div style="aspect-ratio: 4/5; border-radius: 30px; overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.5); background: #1e293b;">
+                        <img src="assets/galleri/0af2cc81-adca-4ce8-bc8c-e21aa36789b7.jpg" alt="Vår verkstad" width="800" height="1000" loading="lazy" style="width: 100%; height: 100%; object-fit: cover;">
                     </div>
                     <div style="position: absolute; bottom: -2rem; right: -2rem; background: var(--brand-red); color: white; padding: 2rem; border-radius: 20px; box-shadow: 0 10px 30px rgba(220, 38, 38, 0.4);">
-                        <p style="font-size: 3rem; font-weight: 800; line-height: 1;">35+</p>
+                        <p style="font-size: 3rem; font-weight: 800; line-height: 1;">15</p>
                         <p style="font-weight: 700; text-transform: uppercase; font-size: 0.875rem;">År av erfarenhet</p>
                     </div>
                 </div>
@@ -168,7 +180,7 @@
                     <p style="color: var(--brand-red); font-weight: 800; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 1rem;">Om oss</p>
                     <h2 style="font-size: 3.5rem; margin-bottom: 2rem;">Passion för <span class="highlight-red">perfektion</span></h2>
                     <p style="font-size: 1.25rem; color: var(--text-muted); margin-bottom: 2.5rem; font-weight: 500;">
-                        Centrum Lack grundades med visionen att erbjuda högsta kvalitet inom billackering och plåtslageri. Vi brinner för tidsenligt hantverk kombinerat med modern teknik. Sedan starten 1989 har vi levererat perfektion.
+                        Centrum Lack grundades med visionen att erbjuda högsta kvalitet inom billackering och plåtslageri. Vi brinner för tidsenligt hantverk kombinerat med modern teknik. Sedan starten 2011 har vi levererat perfektion.
                     </p>
                     <ul style="list-style: none; display: flex; flex-direction: column; gap: 1.5rem;">
                         <li style="display: flex; gap: 1rem; align-items: center; font-weight: 700; font-size: 1.125rem;">
@@ -267,9 +279,9 @@
 
     <footer style="background: #020617; padding: 5rem 0; border-top: 1px solid var(--border); color: white;">
         <div class="container" style="text-align: center;">
-            <img src="assets/logga1.png" alt="Centrum Lack" class="footer-logo" style="margin-bottom: 3rem;">
+            <img src="assets/logga1.png" alt="Centrum Lack" width="1920" height="1080" loading="lazy" class="footer-logo" style="margin-bottom: 3rem;">
             <p style="color: #94a3b8; max-width: 500px; margin: 0 auto 3rem; font-weight: 500;">
-                Din partner för professionell billackering och plåtreparationer. Kvalitet framför allt, sedan 1989.
+                Din partner för professionell billackering och plåtreparationer. Kvalitet framför allt, sedan 2011.
             </p>
             <div style="padding-top: 3rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 2rem;">
                 <p style="color: #64748b;">&copy; 2026 Centrum Lack. Alla rättigheter förbehållna.</p>
@@ -281,7 +293,6 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
-    <script>lucide.createIcons();</script>
+    <script src="script.js" defer></script>
 </body>
 </html>

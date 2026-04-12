@@ -4,16 +4,23 @@ document.addEventListener('DOMContentLoaded', () => {
         window.lucide.createIcons();
     }
 
-    // 2. Navbar Scroll Effect
+    // 2. Navbar Scroll Effect with Throttling
     const navbar = document.getElementById('navbar');
+    let ticking = false;
     const handleScroll = () => {
-        if (window.scrollY > 50) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+                ticking = false;
+            });
+            ticking = true;
         }
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll(); // Initial check
 
     // 3. Mobile Menu Toggle
@@ -23,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
         mobileBtn.addEventListener('click', () => {
             const isHidden = mobileMenu.style.display === 'none';
             mobileMenu.style.display = isHidden ? 'block' : 'none';
-        });
+        }, { passive: true });
 
         // Close menu on link click
         mobileMenu.querySelectorAll('a').forEach(link => {
@@ -33,8 +40,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 4. Randomized Gallery Swapper
-    initializeGallerySwapper();
+    // 4. Randomized Gallery Swapper (Delayed to prioritize initial load)
+    setTimeout(initializeGallerySwapper, 2000);
 
     // 5. Contact Form Submission
     const contactForm = document.getElementById('contact-form');

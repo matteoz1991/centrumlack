@@ -4,10 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Galleri | Centrum Lack</title>
+    <!-- Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
     <!-- Fonts & Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <script src="https://unpkg.com/lucide@latest" defer></script>
     
     <!-- Styles -->
     <link rel="stylesheet" href="style.css">
@@ -18,7 +21,7 @@
     <header class="navbar">
         <div class="container nav-content">
             <a href="index.html#home" class="logo flex items-center">
-                <img src="assets/logga1.png" alt="Centrum Lack" style="height: 160px;" class="logo-glow transition-transform hover:scale-105">
+                <img src="assets/logga1.png" alt="Centrum Lack" width="1920" height="1080" class="nav-logo logo-glow transition-transform hover:scale-105">
             </a>
             
             <nav>
@@ -82,30 +85,68 @@
         // Gallery Auto-Population & Lightbox Logic
         document.addEventListener('DOMContentLoaded', async () => {
             const grid = document.getElementById('gallery-grid');
-            let images = [];
+            // Robust image list (Hardcoded to avoid fetch/CORS issues)
+            const images = [
+                "0461d37a-6c69-4ee3-b0cd-a8f5c05e8283.jpg",
+                "0af2cc81-adca-4ce8-bc8c-e21aa36789b7.jpg",
+                "0fbabf30-5a33-4285-b611-1ed11fb593cd (1).jpg",
+                "0fbabf30-5a33-4285-b611-1ed11fb593cd.jpg",
+                "1aa6263a-0f87-4c7f-a342-8af4c26db5e7 (1).jpg",
+                "1aa6263a-0f87-4c7f-a342-8af4c26db5e7.jpg",
+                "250c2445-8d68-41d4-9f31-19713ce4a512.jpg",
+                "323f4e46-942d-46f0-8cdf-d0a613947941 (1).jpg",
+                "323f4e46-942d-46f0-8cdf-d0a613947941.jpg",
+                "387db898-1b1a-4fb8-9beb-0382fc4ee0de.jpg",
+                "3acb7295-4d91-4f26-971b-49766f90576b.jpg",
+                "3e1b98c9-afba-4442-8816-0be67f229887.jpg",
+                "3f6dd0b8-d422-4aa7-b53c-999eb55087c1.jpg",
+                "439fd59e-27cc-468e-b764-d76f92509151.jpg",
+                "45fef2e8-ab74-4ed6-9cc2-18fadbcc579f.jpg",
+                "4d6895fc-612b-4d29-aaaf-7c4f1450838b.jpg",
+                "505fb96b-1ba8-4488-a1e8-3102e54f8931.jpg",
+                "5242d715-48d9-4364-991b-cbcf9c6988dc.jpg",
+                "56abe001-0cb4-488a-83df-4b1b0d8fcef7.jpg",
+                "6509bccf-bec1-46aa-abca-8dd3b4320467.jpg",
+                "684b03b4-b070-492b-be0e-52165439544e.jpg",
+                "6a22e7ea-4cf4-42b9-b7dc-7acce8a31b4c.jpg",
+                "6ee66731-7244-4faf-bb93-8655acb01416.jpg",
+                "6fcddc8d-2782-45c8-acad-5871a777dde0.jpg",
+                "745cdd70-5d8e-43f8-ba45-c5883b7cc202.jpg",
+                "75b9ec4a-6da2-40e3-a959-604aaaa6c334 (1).jpg",
+                "75b9ec4a-6da2-40e3-a959-604aaaa6c334.jpg",
+                "852d667b-d445-4fcd-8973-eec97cfad8f3.jpg",
+                "86529410-f219-4d08-8f67-4cf724c24d51.jpg",
+                "bc20e9a4-dd21-434a-a027-18d0d148cda1.jpg",
+                "c8769120-d0c4-4933-b0f7-afeecddcb59e.jpg",
+                "ca368a40-803a-4b4e-98d4-cf9f8a3b5dd3.jpg",
+                "cffe21a4-b1af-4503-a6fe-8ec437f2b1ee.jpg",
+                "d3aa62fe-9e7b-4bed-b0e5-16f43c13a01a.jpg",
+                "ef668796-e39c-4e91-b49d-7f2d3d65f319.jpg",
+                "f130c74e-c1c4-4be8-81d7-1e5e2cd21ae0.jpg",
+                "f9f59b84-eaf5-4fa0-88f4-734e95bcefeb.jpg",
+                "fc427162-5af6-4d16-8f5e-2ad89f7877b9.jpg",
+                "fe99bd92-c9d4-460b-8f81-8bacfacfcd88.jpg"
+            ];
 
-            try {
-                const response = await fetch('assets/galleri-manifest.json');
-                images = await response.json();
-            } catch (err) {
-                console.warn('Galleri missing or manifest failed.');
-            }
+            // Clear grid
+            grid.innerHTML = '';
 
             // Populate Grid
             images.forEach((imgSrc, index) => {
                 const card = document.createElement('div');
-                card.className = 'glass-card';
-                card.style.padding = '0.75rem';
-                card.style.background = 'white';
+                card.className = 'gallery-card';
                 card.style.cursor = 'pointer';
                 card.innerHTML = `
-                    <div style="aspect-ratio: 1; overflow: hidden; border-radius: 12px;">
-                        <img src="assets/galleri/${imgSrc}" alt="Centrum Lack Projekt" style="width: 100%; height: 100%; object-fit: cover;" class="gallery-item-img transition-all duration-500 hover:scale-110">
+                    <div class="img-container" style="background: #e2e8f0;">
+                        <img src="assets/galleri/${imgSrc}" alt="Centrum Lack Projekt" width="800" height="800" loading="lazy">
                     </div>
                 `;
-                card.addEventListener('click', () => openLightbox(index));
+                card.addEventListener('click', () => {
+                    if (window.openLightbox) openLightbox(index);
+                });
                 grid.appendChild(card);
             });
+            console.log('Gallery: Population complete.');
 
             // Lightbox Logic
             const lightbox = document.getElementById('lightbox');
