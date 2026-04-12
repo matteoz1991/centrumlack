@@ -30,8 +30,15 @@ body {
     background-color: #fff;
     color: #1e293b;
     line-height: 1.6;
-    overflow-x: hidden;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+    width: 100%;
+    position: relative;
     -webkit-font-smoothing: antialiased;
+}
+
+main {
+    overflow-x: hidden;
+    width: 100%;
 }
 
 /* Typography & Layout */
@@ -89,9 +96,18 @@ h1, h2, h3, h4 {
     .nav-logo {
         height: 110px;
         margin-top: 0;
-        margin-left: -1rem; /* Shifted left in mobile mode */
+        margin-left: 0; /* Centered instead of shifted */
         max-width: 80vw;
         object-fit: contain;
+    }
+    .nav-content {
+        justify-content: center; /* Center logo on mobile */
+    }
+    #mobile-menu-btn {
+        position: absolute;
+        right: 2rem;
+        top: 50%;
+        transform: translateY(-50%);
     }
 }
 
@@ -274,16 +290,7 @@ h1, h2, h3, h4 {
     gap: 2.5rem;
 }
 
-/* Responsive */
-@media (max-width: 1024px) {
-    .grid-3 { grid-template-columns: repeat(2, 1fr); }
-}
-
-@media (max-width: 768px) {
-    .grid-3 { grid-template-columns: 1fr; }
-    .nav-links { display: none; }
-    .section-padding { padding: 4rem 0; }
-}
+/* Hero Section Specifics */
 
 /* Hero Section Specifics */
 .hero {
@@ -323,29 +330,132 @@ h1, h2, h3, h4 {
     padding-top: 140px; /* Offset for larger navbar header */
 }
 
-@media (max-width: 768px) {
-    .hero-content {
-        padding-top: 160px; /* Offset to perfectly clear the 140px navbar box */
     }
 }
+/* Premium Contact Section Styles */
+.premium-glass-card {
+    max-width: 800px;
+    margin: 0 auto;
+    background: rgba(2, 6, 23, 0.6);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 32px;
+    padding: 4.5rem;
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.6), inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
 
-/* Form Styles */
-.form-input {
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+}
+
+.premium-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.premium-input {
     width: 100%;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid var(--border);
-    padding: 1.2rem;
-    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1.4rem 1.4rem 1.4rem 3.5rem; /* Space for icon */
+    border-radius: 16px;
     color: white;
-    font-family: inherit;
-    font-weight: 700;
-    transition: var(--transition);
+    font-family: var(--font-main);
+    font-size: 1.125rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
     outline: none;
 }
 
-.form-input:focus {
+.premium-input:focus {
+    background: rgba(255, 255, 255, 0.06);
     border-color: var(--brand-red);
-    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 25px rgba(220, 38, 38, 0.15);
+}
+
+.premium-input::placeholder {
+    color: #4b5563;
+    font-weight: 400;
+}
+
+.premium-icon {
+    position: absolute;
+    left: 1.25rem;
+    bottom: 1.4rem; /* Aligned with input text */
+    color: #64748b;
+    width: 20px;
+    height: 20px;
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.premium-input:focus + .premium-icon {
+    color: var(--brand-red);
+}
+
+.premium-label {
+    font-size: 0.9rem;
+    font-weight: 800;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-left: 0.5rem;
+}
+
+select.premium-input {
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+}
+
+textarea.premium-input {
+    resize: none;
+    padding-top: 1.4rem;
+}
+
+.btn-premium-red {
+    width: 100%;
+    background: var(--brand-red);
+    color: white;
+    padding: 1.5rem 3rem;
+    border-radius: 100px; /* Iconic Pill Shape */
+    font-size: 1.25rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    box-shadow: 0 10px 40px rgba(220, 38, 38, 0.3);
+}
+
+.btn-premium-red:hover {
+    background: var(--brand-red-hover);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 20px 60px rgba(220, 38, 38, 0.4);
+}
+
+.btn-premium-red:active {
+    transform: translateY(-1px);
+}
+
+.hover-color-white:hover {
+    color: white !important;
 }
 
 /* Lightbox */
