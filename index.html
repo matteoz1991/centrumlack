@@ -74,7 +74,11 @@
         .gallery-card img { width:100%; height:100%; object-fit:cover; transition:transform 0.8s cubic-bezier(0.16,1,0.3,1); }
         .footer-logo { height:160px; width:auto; max-width:100%; filter:grayscale(1); opacity:0.5; transition:var(--transition); }
         .footer-logo:hover { filter:grayscale(0); opacity:1; transform:scale(1.05); }
-        @media (max-width:768px) { .footer-logo { height: 100px !important; } }
+        @media (max-width:768px) { 
+            .footer-logo { height: 100px !important; } 
+            .footer-row { flex-direction: column !important; text-align: center !important; gap: 1.5rem !important; }
+            .footer-row > div { text-align: center !important; justify-content: center !important; min-width: 100% !important; }
+        }
 
         /* Premium Form Styles */
         .contact-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 4rem; max-width: 1200px; margin: 0 auto; align-items: start; }
@@ -398,18 +402,27 @@
         </section>
     </main>
 
-    <footer style="background: #020617; padding: 5rem 0; border-top: 1px solid var(--border); color: white;">
+    <footer style="background: #020617; padding: 3rem 0 2.5rem; border-top: 1px solid var(--border); color: white;">
         <div class="container" style="text-align: center;">
-            <img src="assets/logga1.png" alt="Centrum Lack" width="1920" height="1080" loading="lazy" class="footer-logo" style="margin-bottom: 3rem;">
-            <p style="color: #94a3b8; max-width: 500px; margin: 0 auto 3rem; font-weight: 500;">
-                Din partner för professionell billackering och plåtreparationer. Kvalitet framför allt, sedan 2011.
-            </p>
-            <div style="padding-top: 3rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 2rem;">
-                <p style="color: #64748b;">&copy; 2026 Centrum Lack. Alla rättigheter förbehållna.</p>
-                <div style="display: flex; gap: 2rem;">
-                    <a href="tel:081234567" style="color: white; text-decoration: none; font-weight: 700;">08-123 45 67</a>
-                    <a href="mailto:info@centrumlack.se" style="color: white; text-decoration: none; font-weight: 700;">info@centrumlack.se</a>
+            <img src="assets/logga1.png" alt="Centrum Lack" width="1920" height="1080" loading="lazy" class="footer-logo" style="margin-bottom: 2rem;">
+            
+            <div class="footer-row" style="padding-top: 2rem; border-top: 1px solid rgba(255, 255, 255, 0.05); display: flex; justify-content: space-between; align-items: start; flex-wrap: wrap; gap: 2rem;">
+                
+                <div style="flex: 1; text-align: left; min-width: 250px;">
+                    <p style="color: #64748b; font-size: 0.85rem; padding-top: 0.25rem;">&copy; 2026 Centrum Lack. Alla rättigheter förbehållna.</p>
                 </div>
+                
+                <div style="flex: 2; text-align: center; min-width: 300px;">
+                    <p style="color: #94a3b8; font-weight: 500; font-size: 0.85rem; margin: 0; line-height: 1.6;">
+                        Din partner för professionell billackering och plåtreparationer.<br>Kvalitet framför allt, sedan 2011.
+                    </p>
+                </div>
+                
+                <div style="flex: 1; display: flex; gap: 2rem; justify-content: flex-end; min-width: 250px; padding-top: 0.25rem;">
+                    <a href="tel:081234567" style="color: white; text-decoration: none; font-weight: 800; font-size: 0.85rem; transition: var(--transition);" class="hover-color-white">08-123 45 67</a>
+                    <a href="mailto:info@centrumlack.se" style="color: white; text-decoration: none; font-weight: 800; font-size: 0.85rem; transition: var(--transition);" class="hover-color-white">info@centrumlack.se</a>
+                </div>
+                
             </div>
         </div>
     </footer>
