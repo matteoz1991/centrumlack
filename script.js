@@ -96,6 +96,18 @@ async function initializeGallerySwapper() {
 
     // Start rotation
     let currentSlot = 0;
+    
+    // Track currently displayed image filenames to ensure uniqueness
+    const currentImages = slots.map(id => {
+        const el = document.getElementById(id);
+        const img = el?.querySelector('.slot-img');
+        if (img) {
+            const parts = img.src.split('/');
+            return parts[parts.length - 1];
+        }
+        return null;
+    });
+
     setInterval(() => {
         const slotId = slots[currentSlot];
         const slotEl = document.getElementById(slotId);
@@ -109,9 +121,15 @@ async function initializeGallerySwapper() {
         img.style.transform = 'scale(1.05)';
 
         setTimeout(() => {
-            // Pick a truly random image
-            const randomIndex = Math.floor(Math.random() * images.length);
-            const newSrc = `assets/galleri/${images[randomIndex]}`;
+            // Filter images to find one not currently displayed in any slot
+            const availableImages = images.filter(imageName => !currentImages.includes(imageName));
+            
+            // Fallback if images array is too small (shouldn't happen with 40+ images)
+            const pool = availableImages.length > 0 ? availableImages : images;
+            
+            const randomIndex = Math.floor(Math.random() * pool.length);
+            const selectedImage = pool[randomIndex];
+            const newSrc = `assets/galleri/${selectedImage}`;
             
             // Preload image
             const tempImg = new Image();
@@ -120,9 +138,13 @@ async function initializeGallerySwapper() {
                 img.src = newSrc;
                 img.style.opacity = '1';
                 img.style.transform = 'scale(1)';
+                
+                // Update tracker for this slot
+                currentImages[currentSlot] = selectedImage;
+                
+                // Advance to next slot for the next cycle
+                currentSlot = (currentSlot + 1) % slots.length;
             };
-            
-            currentSlot = (currentSlot + 1) % slots.length;
         }, 700);
 
     }, 5000); // Every 5 seconds
